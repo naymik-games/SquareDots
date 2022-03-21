@@ -62,8 +62,9 @@ class preview extends Phaser.Scene {
       this.scene.launch('UI');
   }
   cancel(){
+    this.scene.stop();
     this.scene.resume('selectGame');
-	  this.scene.stop();
+	  
   }
   
   
