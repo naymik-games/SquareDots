@@ -23,9 +23,9 @@ this.swipe = false;
     this.return.level = -2;
 
     this.input.on('gameobjectup', this.clickHandler, this);
-   // this.input.on('poimterdown', this.down,this);
-   // this.input.on('pointermove', this.move,this);
-    //this.input.on('pointerup', this.up,this);
+    this.input.on('poimterdown', this.down,this);
+   this.input.on('pointermove', this.move,this);
+    this.input.on('pointerup', this.up,this);
 
   }
 

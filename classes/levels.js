@@ -5,7 +5,7 @@ let groups = [
 ];
 let levels = [
   {
-    title: 'a title 1', 
+    title: '01-01', 
 	  allowWild: true, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 4, maxTotalCircle: 10,
     movesGoal: 40,
@@ -19,7 +19,7 @@ let levels = [
 	background: 0xf7eac6
 },
   {
-    title: 'a title 2',
+    title: '01-02',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: true, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -33,7 +33,7 @@ let levels = [
 	background: 0xbdb6c8
  },
   {
-    title: 'a title 3',
+    title: '01-03',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -47,7 +47,7 @@ let levels = [
 	background: 0xafbac1
   },
   {
-    title: 'a title 4',
+    title: '01-04',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -61,7 +61,7 @@ let levels = [
 	background: 0x8ee4af
   },
   {
-    title: 'a title 5',
+    title: '01-05',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -75,7 +75,7 @@ let levels = [
 	background: 0xadadad
   },
   {
-    title: 'a title 6',
+    title: '01-06',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -89,7 +89,7 @@ let levels = [
 	background: 0xe7717d
   },
   {
-    title: 'a title 7',
+    title: '01-07',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -104,7 +104,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 8',
+    title: '01-08',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 25,
@@ -118,7 +118,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 9',
+    title: '01-09',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -132,7 +132,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 10',
+    title: '01-10',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -146,7 +146,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 11',
+    title: '01-11',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 30,
@@ -160,7 +160,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 12',
+    title: '01-12',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -175,7 +175,7 @@ let levels = [
   },
   //group 2
   {
-    title: 'a title 1', 
+    title: '02-01', 
 	allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 4, maxTotalCircle: 10,
     movesGoal: 30,
@@ -189,7 +189,7 @@ let levels = [
 	background: 0xf7eac6
 },
   {
-    title: 'a title 2',
+    title: '02-02',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 33,
@@ -203,7 +203,7 @@ let levels = [
 	background: 0xbdb6c8
  },
   {
-    title: 'a title 3',
+    title: '02-03',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -217,7 +217,7 @@ let levels = [
 	background: 0xafbac1
   },
   {
-    title: 'a title 4',
+    title: '02-04',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 30,
@@ -231,7 +231,7 @@ let levels = [
 	  background: 0x8ee4af
   },
   {
-    title: 'a title 5',
+    title: '02-05',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -245,7 +245,7 @@ let levels = [
 	background: 0xadadad
   },
   {
-    title: 'a title 6',
+    title: '02-06',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -259,7 +259,7 @@ let levels = [
 	background: 0xe7717d
   },
   {
-    title: 'a title 7',
+    title: '02-07',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -274,7 +274,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 8',
+    title: '02-08',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 25,
@@ -288,7 +288,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 9',
+    title: '02-09',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -302,7 +302,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 10',
+    title: '02-10',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -316,7 +316,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 11',
+    title: '02-11',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 30,
@@ -330,7 +330,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 12',
+    title: '02-12',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -344,50 +344,11 @@ let levels = [
 	background: 0xf7eac6
   },
   //group 3
-    {
-    title: 'a title 13', 
-	allowWild: true, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 4, maxTotalCircle: 10,
-    movesGoal: 40,
-    allowExtra: false, extras: 3,
-    allowRover: false, rovers: 3,
-	allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { brown: 10, orange: 10, green: 10, purple: 10, red: 10, blue: 10},
-    rows: 7, //max 12
-    cols: 7, //7
-    items: 6,
-	background: 0xf7eac6
-},
+  {"title":"03-01","rows":"7","cols":"5","items":"4","background":"0xfde8e8","allowWild":false,"maxWild":"0","maxTotalWild":"0","allowCircle":false,"maxCircle":"0","maxTotalCircle":"0","allowGems":false,"maxGems":"0","maxTotalGems":"0","movesGoal":"20","allowExtra":true,"extras":"5","allowRover":false,"rovers":"0","win":{"ice":"4"}},
+  {"title":"03-02","rows":"7","cols":"5","items":"4","background":"0xe8f1fd","allowWild":false,"maxWild":"0","maxTotalWild":"0","allowCircle":false,"maxCircle":"0","maxTotalCircle":"0","allowGems":false,"maxGems":"0","maxTotalGems":"0","movesGoal":"20","allowExtra":true,"extras":"5","allowRover":false,"rovers":"0","win":{"orange":"10","square":"3","ice":"4"}},
+  {"title":"03-03","rows":"7","cols":"5","items":"4","background":"0xe8f1fd","allowWild":false,"maxWild":"0","maxTotalWild":"0","allowCircle":false,"maxCircle":"0","maxTotalCircle":"0","allowGems":false,"maxGems":"0","maxTotalGems":"0","movesGoal":"20","allowExtra":true,"extras":"5","allowRover":false,"rovers":"0","win":{"red":"10","blue":"10","orange":"10","green":"10","square":"3","ice":"5"}},
   {
-    title: 'a title 14',
-    allowWild: true, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 3,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: {red: 10, square: 6},
-    rows: 5, //max 12
-    cols: 3, //7
-    items: 3,
-	background: 0xbdb6c8
- },
-  {
-    title: 'a title 15',
-    allowWild: true, maxWild: 4, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 25,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: {orange:30, square: 6},
-        rows: 9, //max 12
-    cols: 8, //7
-    items: 6,
-	background: 0xafbac1
-  },
-  {
-    title: 'a title 16',
+    title: '03-04',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -401,7 +362,7 @@ let levels = [
 	background: 0x8ee4af
   },
   {
-    title: 'a title 17',
+    title: '03-05',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -415,7 +376,7 @@ let levels = [
 	background: 0xadadad
   },
   {
-    title: 'a title 6',
+    title: '03-06',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -429,7 +390,7 @@ let levels = [
 	background: 0xe7717d
   },
   {
-    title: 'a title 7',
+    title: '03-07',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -444,7 +405,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 8',
+    title: '03-08',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 25,
@@ -458,7 +419,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 9',
+    title: '03-09',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -472,7 +433,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 10',
+    title: '03-10',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
@@ -486,7 +447,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 11',
+    title: '03-11',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 30,
@@ -500,7 +461,7 @@ let levels = [
 	background: 0xf7eac6
   },
   {
-    title: 'a title 12',
+    title: '03-12',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
     allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
     movesGoal: 20,
