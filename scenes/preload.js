@@ -65,9 +65,9 @@ class preloadGame extends Phaser.Scene {
       assetText.destroy();
     });
 
-    this.load.image("particle", "assetsparticle.png");
+    this.load.image("particle", "assets/particles.png");
     for (var i = 0; i < 125; i++) {
-      this.load.image("particle", "assets/particle.png");
+      this.load.image("particle", "assets/particles.png");
     } 
 	  
 	  
@@ -83,10 +83,7 @@ class preloadGame extends Phaser.Scene {
       frameWidth: 100,
       frameHeight: 100
     });
-    this.load.spritesheet("arrows", "assets/sprites/arrows.png", {
-      frameWidth: 100,
-      frameHeight: 100
-    });
+    
     this.load.spritesheet("icons", "assets/sprites/menu_icons.png", {
       frameWidth: 300,
       frameHeight: 300

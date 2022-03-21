@@ -9,12 +9,14 @@ class selectGame extends Phaser.Scene {
   create() {
 	  this.cameras.main.setBackgroundColor(0xf7eac6);
     this.startGroup = onGroup;
-    this.playText = this.add.bitmapText(game.config.width / 2, 75, 'atari', 'NEXT >', 60).setOrigin(.5, .5).setTint(0xc76210).setInteractive();
+    /* this.playText = this.add.bitmapText(game.config.width / 2 + 100, 75, 'atari', 'NEXT >', 60).setOrigin(.5, .5).setTint(0xc76210).setInteractive();
     this.playText.level = -1;
+
+    this.preText = this.add.bitmapText(game.config.width / 2 - 100, 75, 'atari', '< PRE', 60).setOrigin(.5, .5).setTint(0xc76210).setInteractive();
+    this.preText.level = -3; */
     /*  this.playText.on('pointerdown', function(){
         this.scene.start("PlayGame");
       }, this);*/
-this.swipe = false;
 
     this.showGroup(this.startGroup);
     this.return = this.add.image(game.config.width / 2, 1550,'menu_icons', 5).setScale(1.5).setInteractive().setTint(0xc76210);
@@ -22,32 +24,49 @@ this.swipe = false;
     //this.backText = this.add.bitmapText(game.config.width / 2, 1500, 'atari', '< back', 60).setOrigin(.5, .5).setTint(0xd8a603).setInteractive();
     this.return.level = -2;
 
-    this.input.on('gameobjectup', this.clickHandler, this);
-    this.input.on('poimterdown', this.down,this);
-   this.input.on('pointermove', this.move,this);
-    this.input.on('pointerup', this.up,this);
+   this.input.on('gameobjectup', this.clickHandler, this);
+
+    this.input.on('pointerup', this.endSwipe,this);
 
   }
 
-down(e){
-  
-}
-move(e){
- // console.log(e.downX - e.x)
-  if((e.downX - e.x) > 55 || (e.downX - e.x) > -55){
-    this.swipe = true;
-    
-  }
-} 
-up(e){
-  if(e.downX < e.x){
-      console.log('right')
+  endSwipe(e, obj) {
+    var swipeTime = e.upTime - e.downTime;
+    var swipe = new Phaser.Geom.Point(e.upX - e.downX, e.upY - e.downY);
+    var swipeMagnitude = Phaser.Geom.Point.GetMagnitude(swipe);
+    var swipeNormal = new Phaser.Geom.Point(swipe.x / swipeMagnitude, swipe.y / swipeMagnitude);
+    if (swipeMagnitude > 20 && swipeTime < 1000 && (Math.abs(swipeNormal.y) > 0.8 || Math.abs(swipeNormal.x) > 0.8)) {
+
+      if (swipeNormal.x > 0.8) {
+        console.log('right')
+        //this.handleMove(0, 1, );
+        this.preGroup(obj[0], 'right')
+      }
+      if (swipeNormal.x < -0.8) {
+        console.log('left')
+       this.nextGroup(obj[0], 'left')
+      }
+      if (swipeNormal.y > 0.8) {
+        console.log('down')
+        //this.handleMove(1, 0);
+      }
+      if (swipeNormal.y < -0.8) {
+        console.log('up')
+        //this.handleMove(-1, 0);
+      }
     } else {
-      console.log('left')
+      console.log('tap')
+      if(obj[0].level > -1){
+      onLevel = obj[0].level;
+      onGroup = this.startGroup;
+      this.scene.pause()
+      this.scene.launch('preview',{level: onLevel, group: this.startGroup});
+      }
+      
     }
-}
+  }
 
-  showGroup(groupNum) {
+  showGroup(groupNum, dir) {
     if (this.groupBox) {
       //  this.groupBox.destroy(true);
       //this.hideGroup();
@@ -116,8 +135,12 @@ up(e){
 
 
     groupBox.add(groupText);
-
-    groupBox.setPosition(game.config.width, 0);
+    if(dir == 'left'){
+      var xDir = +850
+    } else if(dir == 'right'){
+      var xDir = -850
+    }
+    groupBox.setPosition(xDir, 0);
     this.groupBox = groupBox;
     this.tweens.add({
       targets: this.groupBox,
@@ -134,56 +157,48 @@ up(e){
     });
   }
 
-  hideGroup(num) {
+  hideGroup(num, dir) {
+    if(dir == 'left'){
+      var xDir = -850
+    } else if(dir == 'right'){
+      var xDir = +850
+    }
     this.tweens.add({
       targets: this.groupBox,
       //alpha: .5,
       //  x: game.config.width,
-      x: -850,
+      x: xDir,
       duration: 500,
       //  yoyo: true,
       callbackScope: this,
       onComplete: function() {
         this.groupBox.destroy(true);
-        this.showGroup(num);
+        this.showGroup(num, dir);
       }
     });
 
   }
-
-
+  preGroup(block, dir) {
+    if (this.startGroup < groups.length - 1) {
+      this.startGroup++;
+    } else {
+      this.startGroup = 0
+    }
+    this.hideGroup(this.startGroup,dir);
+  }
+  nextGroup(block, dir) {
+    if (this.startGroup > 0) {
+      this.startGroup--;
+    } else {
+      this.startGroup = groups.length - 1
+    }
+    this.hideGroup(this.startGroup, dir);
+  }
   clickHandler(e, block) {
-    if(this.swipe){
-      if(e.downX < e.x){
-      console.log('right')
-    } else {
-      console.log('left')
-    }
-      
-      this.swipe = false;
-      return
-      
-    }
-    if (block.level == -1) {
-
-      if (this.startGroup < groups.length - 1) {
-        this.startGroup++;
-      } else {
-        this.startGroup = 0
-      }
-      this.hideGroup(this.startGroup);
-      //   this.showGroup(this.startGroup);
-    } else if (block.level == -2) {
+    
+    if (block.level == -2) {
       this.scene.start('startGame');
-    } else {
-      onLevel = block.level;
-      onGroup = this.startGroup;
-      //gameMode = 'challenge'
-      this.scene.pause();
-	  this.scene.launch('preview',{level: block.level, group: this.startGroup})
-      //this.scene.start('playGame');
-      //this.scene.launch('UI');
-    }
+    } 
 
   }
 
