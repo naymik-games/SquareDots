@@ -6,119 +6,14 @@ let groups = [
 ];
 let levels = [
   { "title": "Test", "rows": "8", "cols": "7", "items": "5", "background": "0x00cc29", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": true, "maxBomb": "3", "allowRover": false, "rovers": "0", "win": { "bomb": "2" } },
-  {
-    title: '01-02',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: true, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 3,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { red: 10, orange: 10, circle: 3 },
-    rows: 8, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xbdb6c8
-  },
-  {
-    title: '01-03',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: true, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { orange: 20, square: 4, ice: 3 },
-    rows: 8, //max 12
-    cols: 6, //7
-    items: 6,
-    background: 0xafbac1
-  },
-  {
-    title: '01-04',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: true, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { green: 20, red: 20 },
-    rows: 8, //max 12
-    cols: 6, //7
-    items: 6,
-    background: 0x8ee4af
-  },
-  {
-    title: '01-05',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: true, maxGems: 2, maxTotalGems: 10,
-    win: { blue: 30, square: 8 },
-    rows: 6, //max 12
-    cols: 8, //7
-    items: 6,
-    background: 0xadadad
-  },
-  {
-    title: '01-06',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { red: 10, blue: 10, square: 1 },
-    rows: 6, //max 12
-    cols: 3, //7
-    items: 4,
-    background: 0xe7717d
-  },
-  {
-    title: '01-07',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    allowBomb: false, maxBomb: 4,
-    win: { square: 1, purple: 20 },
-    rows: 6, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
-  {
-    title: '01-08',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 25,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { purple: 20 },
-    rows: 5, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
-  {
-    title: '01-09',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { square: 4 },
-    rows: 6, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
+  { "title": "Test", "rows": "8", "cols": "7", "items": "4", "background": "0x00cc29", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": true, "maxGems": "3", "maxTotalGems": "4", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "orange": "18", "gem": "2" } },
+  { "title": "test wild", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": true, "maxWild": "3", "maxTotalWild": "10", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15" } },
+  { "title": "test circle", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "3", "maxTotalWild": "10", "allowCircle": true, "maxCircle": "3", "maxTotalCircle": "5", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "circle": "2" } },
+  { "title": "test rover", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": true, "rovers": "4", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "rover": "2" } },
+  { "title": "test ice", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": true, "extras": "4", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "ice": "2" } },
+  { "title": "test fire", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": true, "maxFire": "4", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15" } },
+  { "title": "test bomb", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": true, "maxBomb": "4", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "bomb": "3" } },
+  { "title": "test gems", "rows": "8", "cols": "7", "items": "5", "background": "0xfafafa", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": true, "maxGems": "2", "maxTotalGems": "6", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "gem": "3" } },
   {
     title: '01-10',
     allowWild: false, maxWild: 3, maxTotalWild: 10,
@@ -175,162 +70,18 @@ let levels = [
   { "title": "02-11", "rows": "8", "cols": "7", "items": "4", "background": "0xfdd8b4", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowRover": false, "rovers": "0", "win": { "red": "25", "blue": "25", "orange": "25", "green": "25", "square": "6" } },
   { "title": "02-12", "rows": "8", "cols": "7", "items": "5", "background": "0xfdd8b4", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "25", "allowExtra": false, "extras": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "purple": "15", "square": "6" } },
   //group 3
-  { "title": "03-01", "rows": "8", "cols": "5", "items": "5", "background": "0xf3ff99", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "4", "maxTotalCircle": "10", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowRover": false, "rovers": "0", "win": { "circle": "5" } },
-  {
-    title: '03-02',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 33,
-    allowExtra: false, extras: 3,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { red: 10, orange: 10, blue: 30, brown: 30, square: 5 },
-    rows: 10, //max 12
-    cols: 6, //7
-    items: 6,
-    background: 0xbdb6c8
-  },
-  {
-    title: '03-03',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { square: 4 },
-    rows: 4, //max 12
-    cols: 4, //7
-    items: 4,
-    background: 0xafbac1
-  },
-  {
-    title: '03-04',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 30,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { green: 20, red: 20 },
-    rows: 7, //max 12
-    cols: 4, //7
-    items: 4,
-    background: 0x8ee4af
-  },
-  {
-    title: '03-05',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { blue: 30, square: 8 },
-    rows: 6, //max 12
-    cols: 8, //7
-    items: 4,
-    background: 0xadadad
-  },
-  {
-    title: '03-06',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { red: 10, blue: 10, square: 1 },
-    rows: 6, //max 12
-    cols: 3, //7
-    items: 4,
-    background: 0xe7717d
-  },
-  {
-    title: '03-07',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    allowBomb: false, maxBomb: 4,
-    win: { square: 1, purple: 20 },
-    rows: 6, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
-  {
-    title: '03-08',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 25,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { purple: 20 },
-    rows: 5, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
-  {
-    title: '03-09',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { square: 4 },
-    rows: 6, //max 12
-    cols: 6, //7
-    items: 5,
-    background: 0xf7eac6
-  },
-  {
-    title: '03-10',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { brown: 15 },
-    rows: 7, //max 12
-    cols: 7, //7
-    items: 6,
-    background: 0xf7eac6
-  },
-  {
-    title: '03-11',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 30,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { orange: 20, brown: 20 },
-    rows: 8, //max 12
-    cols: 7, //7
-    items: 6,
-    background: 0xf7eac6
-  },
-  {
-    title: '03-12',
-    allowWild: false, maxWild: 3, maxTotalWild: 10,
-    allowCircle: false, maxCircle: 3, maxTotalCircle: 10,
-    movesGoal: 20,
-    allowExtra: false, extras: 4,
-    allowRover: false, rovers: 4,
-    allowGems: false, maxGems: 2, maxTotalGems: 10,
-    win: { brown: 10, square: 1 },
-    rows: 5, //max 12
-    cols: 5, //7
-    items: 6,
-    background: 0xf7eac6
-  },
+  { "title": "03-01", "rows": "8", "cols": "5", "items": "4", "background": "0xf3ff99", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "4", "maxTotalCircle": "10", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowRover": false, "rovers": "0", "win": { "circle": "5" } },
+  { "title": "03-02", "rows": "5", "cols": "5", "items": "4", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "3", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "circle": "4" } },
+  { "title": "03-03", "rows": "7", "cols": "5", "items": "4", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "3", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "orange": "15", "circle": "5" } },
+  { "title": "03-04", "rows": "7", "cols": "5", "items": "5", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "3", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "25", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "circle": "5" } },
+  { "title": "03-05", "rows": "7", "cols": "6", "items": "5", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "2", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "15", "orange": "15", "green": "15", "circle": "5" } },
+  { "title": "03-06", "rows": "7", "cols": "7", "items": "5", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "4", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "20", "orange": "20", "green": "20", "circle": "11" } },
+  { "title": "03-07", "rows": "7", "cols": "7", "items": "4", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "6", "maxTotalCircle": "15", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "30", "blue": "30", "orange": "30", "green": "30", "square": "7", "circle": "11" } },
+  { "title": "03-08", "rows": "8", "cols": "7", "items": "5", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "6", "maxTotalCircle": "15", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "30", "blue": "30", "orange": "30", "square": "3", "circle": "8" } },
+  { "title": "03-09", "rows": "8", "cols": "7", "items": "6", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "6", "maxTotalCircle": "15", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "10", "blue": "10", "orange": "10", "green": "10", "purple": "10", "brown": "10", "circle": "5" } },
+  { "title": "03-10", "rows": "8", "cols": "4", "items": "4", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "2", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "10", "orange": "10", "purple": "10", "circle": "5" } },
+  { "title": "03-11", "rows": "8", "cols": "5", "items": "4", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "2", "maxTotalCircle": "7", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "25", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "orange": "15", "purple": "15", "square": "1", "circle": "5" } },
+  { "title": "03-12", "rows": "9", "cols": "7", "items": "5", "background": "0xb4e1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": true, "maxCircle": "7", "maxTotalCircle": "10", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "30", "allowExtra": false, "extras": "0", "allowFire": false, "maxFire": "0", "allowBomb": false, "maxBomb": "0", "allowRover": false, "rovers": "0", "win": { "red": "15", "blue": "10", "orange": "30", "green": "10", "purple": "15", "brown": "10", "square": "5", "circle": "10" } },
   //group 4
   { "title": "04-01", "rows": "7", "cols": "5", "items": "4", "background": "0xe8f1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": true, "extras": "5", "allowRover": false, "rovers": "0", "win": { "ice": "4" } },
   { "title": "04-02", "rows": "7", "cols": "5", "items": "4", "background": "0xe8f1fd", "allowWild": false, "maxWild": "0", "maxTotalWild": "0", "allowCircle": false, "maxCircle": "0", "maxTotalCircle": "0", "allowGems": false, "maxGems": "0", "maxTotalGems": "0", "movesGoal": "20", "allowExtra": true, "extras": "5", "allowRover": false, "rovers": "0", "win": { "orange": "10", "square": "3", "ice": "4" } },
