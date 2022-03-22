@@ -7,7 +7,7 @@ class selectGame extends Phaser.Scene {
 
   }
   create() {
-	  this.cameras.main.setBackgroundColor(0xf7eac6);
+    this.cameras.main.setBackgroundColor(0xf7eac6);
     this.startGroup = onGroup;
     /* this.playText = this.add.bitmapText(game.config.width / 2 + 100, 75, 'atari', 'NEXT >', 60).setOrigin(.5, .5).setTint(0xc76210).setInteractive();
     this.playText.level = -1;
@@ -19,14 +19,14 @@ class selectGame extends Phaser.Scene {
       }, this);*/
 
     this.showGroup(this.startGroup);
-    this.return = this.add.image(game.config.width / 2, 1550,'menu_icons', 5).setScale(1.5).setInteractive().setTint(0xc76210);
+    this.return = this.add.image(game.config.width / 2, 1550, 'menu_icons', 5).setScale(1.5).setInteractive().setTint(0xc76210);
 
     //this.backText = this.add.bitmapText(game.config.width / 2, 1500, 'atari', '< back', 60).setOrigin(.5, .5).setTint(0xd8a603).setInteractive();
     this.return.level = -2;
+    this.input.topOnly = true;
+    this.input.on('gameobjectup', this.clickHandler, this);
 
-   this.input.on('gameobjectup', this.clickHandler, this);
-
-    this.input.on('pointerup', this.endSwipe,this);
+    this.input.on('pointerup', this.endSwipe, this);
 
   }
 
@@ -44,7 +44,7 @@ class selectGame extends Phaser.Scene {
       }
       if (swipeNormal.x < -0.8) {
         console.log('left')
-       this.nextGroup(obj[0], 'left')
+        this.nextGroup(obj[0], 'left')
       }
       if (swipeNormal.y > 0.8) {
         console.log('down')
@@ -54,16 +54,16 @@ class selectGame extends Phaser.Scene {
         console.log('up')
         //this.handleMove(-1, 0);
       }
-    } else {
+    }  else {
       console.log('tap')
-      if(obj[0].level > -1){
-      onLevel = obj[0].level;
-      onGroup = this.startGroup;
-      this.scene.pause()
-      this.scene.launch('preview',{level: onLevel, group: this.startGroup});
+      if (obj[0].level > -1) {
+        onLevel = obj[0].level;
+        onGroup = this.startGroup;
+        this.scene.pause()
+        this.scene.launch('preview', { level: onLevel, group: this.startGroup });
       }
-      
-    }
+
+    } 
   }
 
   showGroup(groupNum, dir) {
@@ -83,35 +83,35 @@ class selectGame extends Phaser.Scene {
 
 
     for (var i = 0; i < groups[groupNum].numLevels; i++) {
-      if(i < 3){
-		 var xpos = 50 + i * 275;
-		 var ypos = 400; 
-	  } else if(i < 6){
-		 var xpos = 50 + (i - 3) * 275;
-		 var ypos = 400 + 275; 
-	  } else if(i < 9){
-		 var xpos = 50 + (i - 6) * 275;
-		 var ypos = 400 + 550; 
-	  } else {
-		 var xpos = 50 + (i - 9) * 275;
-		 var ypos = 400 + 825; 
-	  }
-	     
+      if (i < 3) {
+        var xpos = 50 + i * 275;
+        var ypos = 400;
+      } else if (i < 6) {
+        var xpos = 50 + (i - 3) * 275;
+        var ypos = 400 + 275;
+      } else if (i < 9) {
+        var xpos = 50 + (i - 6) * 275;
+        var ypos = 400 + 550;
+      } else {
+        var xpos = 50 + (i - 9) * 275;
+        var ypos = 400 + 825;
+      }
+
       var tempLevel = levelNum + 1;
       var statusText = this.add.bitmapText(xpos + 112.5, ypos - 60, 'atari', tempLevel, 70).setOrigin(.5).setTint(0x298191);
-	  var levelTitle = this.add.image(xpos,ypos, 'select_icons', 0).setOrigin(0,.5).setScale(.75);
-	  levelTitle.level = levelNum;
+      var levelTitle = this.add.image(xpos, ypos, 'select_icons', 0).setOrigin(0, .5).setScale(.75);
+      levelTitle.level = levelNum;
 
 
 
       if (gameSettings.levelStatus[levelNum] < 0) {
         //levelTitle.setAlpha(.5)
-			levelTitle.setFrame(4);
-        
+        levelTitle.setFrame(4);
+
       } else {
         levelTitle.setInteractive();
         if (gameSettings.levelStatus[levelNum] == 0) {
-          
+
         } else if (gameSettings.levelStatus[levelNum] == '*') {
           levelTitle.setFrame(1);
         } else if (gameSettings.levelStatus[levelNum] == '**') {
@@ -123,9 +123,6 @@ class selectGame extends Phaser.Scene {
         }
 
       }
-
-
-
       levelNum++;
       groupBox.add(levelTitle);
       groupBox.add(statusText);
@@ -135,9 +132,9 @@ class selectGame extends Phaser.Scene {
 
 
     groupBox.add(groupText);
-    if(dir == 'left'){
+    if (dir == 'left') {
       var xDir = +850
-    } else if(dir == 'right'){
+    } else if (dir == 'right') {
       var xDir = -850
     }
     groupBox.setPosition(xDir, 0);
@@ -151,16 +148,16 @@ class selectGame extends Phaser.Scene {
       //delay: 500,
       //  yoyo: true,
       callbackScope: this,
-      onComplete: function() {
+      onComplete: function () {
 
       }
     });
   }
 
   hideGroup(num, dir) {
-    if(dir == 'left'){
+    if (dir == 'left') {
       var xDir = -850
-    } else if(dir == 'right'){
+    } else if (dir == 'right') {
       var xDir = +850
     }
     this.tweens.add({
@@ -171,7 +168,7 @@ class selectGame extends Phaser.Scene {
       duration: 500,
       //  yoyo: true,
       callbackScope: this,
-      onComplete: function() {
+      onComplete: function () {
         this.groupBox.destroy(true);
         this.showGroup(num, dir);
       }
@@ -184,7 +181,7 @@ class selectGame extends Phaser.Scene {
     } else {
       this.startGroup = 0
     }
-    this.hideGroup(this.startGroup,dir);
+    this.hideGroup(this.startGroup, dir);
   }
   nextGroup(block, dir) {
     if (this.startGroup > 0) {
@@ -195,7 +192,7 @@ class selectGame extends Phaser.Scene {
     this.hideGroup(this.startGroup, dir);
   }
   clickHandler(e, block) {
-    
+
     if (block.level == -2) {
       this.scene.start('startGame');
     } 

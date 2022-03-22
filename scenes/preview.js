@@ -40,7 +40,7 @@ class preview extends Phaser.Scene {
     this.previewBox.add(cancelIcon);
 
     playText.on('pointerdown', this.play, this);
-    cancelIcon.on('pointerdown', this.cancel, this);
+    cancelIcon.on('pointerup', this.cancel, this);
 
 
   }
@@ -62,6 +62,7 @@ class preview extends Phaser.Scene {
     this.scene.launch('UI');
   }
   cancel() {
+    this.input.stopPropagation();
     this.scene.stop();
     this.scene.resume('selectGame');
     // 

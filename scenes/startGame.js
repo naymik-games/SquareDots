@@ -42,7 +42,7 @@ class startGame extends Phaser.Scene {
     var currentLevel = this.add.bitmapText(game.config.width / 2 - 50, 1150, 'atari', 'Level: ' + temp, 40).setOrigin(0, .5).setTint(0x000000);;
 
     startChallengeIcon.setInteractive();
-    startChallengeIcon.on('pointerdown', this.clickHandler3, this);
+    startChallengeIcon.on('pointerup', this.clickHandler3, this);
 
   }
   clickHandler()
@@ -61,6 +61,7 @@ class startGame extends Phaser.Scene {
   }
   clickHandler3()
   {
+    this.input.stopPropagation();
     gameOptions.gameMode = 'challenge';
     //  Dispatch a Scene event
     this.scene.start('selectGame');

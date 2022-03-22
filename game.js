@@ -2,7 +2,7 @@ let game;
 
 
 
-window.onload = function() {
+window.onload = function () {
   let gameConfig = {
     type: Phaser.AUTO,
     scale: {
@@ -35,6 +35,7 @@ class playGame extends Phaser.Scene {
     //reset tally
     var temptally = { red: 0, blue: 0, orange: 0, green: 0, purple: 0, brown: 0, circle: 0, rover: 0, ice: 0, fire: 0, square: 0, bomb: 0 }
     tally = temptally;
+    this.resetCounts();
     // 2:30 in seconds
     this.initialTime = gameOptions.defaultTime;
 
@@ -42,8 +43,9 @@ class playGame extends Phaser.Scene {
 
     //timerText = this.add.bitmapText(100, 20, 'atari', 'CD: ' + this.formatTime(this.initialTime),40).setOrigin(.5);
     // Each 1000 ms call onEvent
-    if (gameOptions.gameMode == 'time') {
+    if (gameOptions.gameMode == 'time' || gameOptions.gameMode == 'moves') {
       //timedEvent = this.time.addEvent({ delay: 1000, callback: this.onEvent, callbackScope: this, loop: true });
+      levelOptions = levelOptionsNormal;
     }
     if (gameOptions.gameMode == 'challenge') {
       levelOptions = levels[onLevel];
@@ -68,7 +70,7 @@ class playGame extends Phaser.Scene {
       items: levelOptions.items
     });
 
-var boardWidth = 100 * this.draw3.getColumns();
+    var boardWidth = 100 * this.draw3.getColumns();
     boardWidth = 900 - boardWidth
     gameOptions.offsetX = boardWidth / 2
 
@@ -116,23 +118,23 @@ var boardWidth = 100 * this.draw3.getColumns();
     this.addText = this.add.bitmapText(425, game.config.height - 80, 'atari', canAddCount, 45).setOrigin(.5, 0).setTint(0xffffff);
 
     this.menuButton = this.add.image(game.config.width - 50, game.config.height - 50, 'menu_icons', 0).setOrigin(1, 1).setInteractive().setScale(.7);
-    this.menuButton.on('pointerdown', function(){
+    this.menuButton.on('pointerdown', function () {
       this.scene.pause();
       this.scene.pause('UI');
       this.scene.launch('pauseGame');
     }, this);
     this.replayButton = this.add.image(game.config.width - 140, game.config.height - 50, 'menu_icons', 1).setOrigin(1, 1).setInteractive().setScale(.7);
-	this.replayButton.on('pointerdown',function(){
-		//reset tally
-		var temptally = { red: 0, blue: 0, orange: 0, green: 0, purple: 0, brown: 0, circle: 0, rover: 0, ice: 0, fire: 0, square: 0, bomb: 0 }
-		tally = temptally;
-		this.events.emit('tally');
-		this.events.emit('moves', {moves: 0});
-		this.events.emit('dots', {dots: 0});
-		this.events.emit('resettime');
-		this.scene.restart('UI');
-		this.scene.restart();
-	},this)
+    this.replayButton.on('pointerdown', function () {
+      //reset tally
+      var temptally = { red: 0, blue: 0, orange: 0, green: 0, purple: 0, brown: 0, circle: 0, rover: 0, ice: 0, fire: 0, square: 0, bomb: 0 }
+      tally = temptally;
+      this.events.emit('tally');
+      this.events.emit('moves', { moves: 0 });
+      this.events.emit('dots', { dots: 0 });
+      this.events.emit('resettime');
+      this.scene.restart('UI');
+      this.scene.restart();
+    }, this)
 
 
 
@@ -140,7 +142,7 @@ var boardWidth = 100 * this.draw3.getColumns();
     var graphics2 = this.add.graphics({ lineStyle: { width: 20, color: 0x3e5e71 } });
     var rect = new Phaser.Geom.Rectangle(gameOptions.offsetX - 5, gameOptions.offsetY - 5, levelOptions.cols * gameOptions.gemSize + 10, levelOptions.rows * gameOptions.gemSize + 10);
     graphics2.strokeRectShape(rect);
-    graphics2.fillStyle(0xf7eac6, ); // color: 0xRRGGBB
+    graphics2.fillStyle(0xf7eac6,); // color: 0xRRGGBB
     graphics2.fillRectShape(rect);
 
     this.draw3.generateField();
@@ -156,7 +158,7 @@ var boardWidth = 100 * this.draw3.getColumns();
     if (levelOptions.allowBomb) {
       this.drawBomb();
     }
-    
+
     this.input.on("pointerdown", this.gemSelect, this);
     this.input.on("pointermove", this.drawPath, this);
     this.input.on("pointerup", this.removeGems, this);
@@ -230,7 +232,7 @@ var boardWidth = 100 * this.draw3.getColumns();
   drawField() {
     this.poolArray = [];
     this.arrowArray = [];
-    
+
     for (let i = 0; i < this.draw3.getRows(); i++) {
       this.arrowArray[i] = [];
       for (let j = 0; j < this.draw3.getColumns(); j++) {
@@ -254,7 +256,7 @@ var boardWidth = 100 * this.draw3.getColumns();
           ease: 'Bounce',
           duration: 500,
           callbackScope: this,
-          onComplete: function() {
+          onComplete: function () {
 
           }
         })
@@ -287,7 +289,7 @@ var boardWidth = 100 * this.draw3.getColumns();
         ease: 'Bounce',
         duration: 500,
         callbackScope: this,
-        onComplete: function() {
+        onComplete: function () {
 
         }
       });
@@ -297,42 +299,42 @@ var boardWidth = 100 * this.draw3.getColumns();
 
   }
 
-drawBomb(){
-  var b = 0;
-  while (b < levelOptions.maxBomb){
-    var j = Phaser.Math.Between(0, levelOptions.cols - 1);
-    var i = Phaser.Math.Between(0, levelOptions.rows - 1);
-    if(!this.draw3.isExtra(i, j)){
-      this.addBomb(i,j);
-      b++;
+  drawBomb() {
+    var b = 0;
+    while (b < levelOptions.maxBomb) {
+      var j = Phaser.Math.Between(0, levelOptions.cols - 1);
+      var i = Phaser.Math.Between(0, levelOptions.rows - 1);
+      if (!this.draw3.isExtra(i, j)) {
+        this.addBomb(i, j);
+        b++;
+      }
     }
   }
-}
 
 
-addBomb(i,j){
-  let posX = gameOptions.offsetX + gameOptions.gemSize * j + gameOptions.gemSize / 2;
-  let posY = gameOptions.offsetY + gameOptions.gemSize * i + gameOptions.gemSize / 2;
-  //var val = this.draw3.valueAt(i, j);
-  //let gem = this.add.sprite(posX, posY, "gems", this.draw3.valueAt(i, j));
-  let gem = this.add.sprite(-100, posY, "gems", 25);
-  gem.displayWidth = gameOptions.gemSize;
-  gem.displayHeight = gameOptions.gemSize;
-  gem.setAlpha(1);
-  this.tweens.add({
-    targets: gem,
-    x: posX,
-    delay: 300,
-    ease: 'Bounce',
-    duration: 500,
-    callbackScope: this,
-    onComplete: function() {
-  
-    }
-  });
-  this.draw3.setBomb(i, j);
-  this.draw3.setCustomDataExtra(i, j, gem);
-}
+  addBomb(i, j) {
+    let posX = gameOptions.offsetX + gameOptions.gemSize * j + gameOptions.gemSize / 2;
+    let posY = gameOptions.offsetY + gameOptions.gemSize * i + gameOptions.gemSize / 2;
+    //var val = this.draw3.valueAt(i, j);
+    //let gem = this.add.sprite(posX, posY, "gems", this.draw3.valueAt(i, j));
+    let gem = this.add.sprite(-100, posY, "gems", 25);
+    gem.displayWidth = gameOptions.gemSize;
+    gem.displayHeight = gameOptions.gemSize;
+    gem.setAlpha(1);
+    this.tweens.add({
+      targets: gem,
+      x: posX,
+      delay: 300,
+      ease: 'Bounce',
+      duration: 500,
+      callbackScope: this,
+      onComplete: function () {
+
+      }
+    });
+    this.draw3.setBomb(i, j);
+    this.draw3.setCustomDataExtra(i, j, gem);
+  }
 
   removeField() {
     for (let i = 0; i < this.draw3.getRows(); i++) {
@@ -346,7 +348,7 @@ addBomb(i,j){
           ease: 'Linear',
           duration: 500,
           callbackScope: this,
-          onComplete: function() {
+          onComplete: function () {
             //timedEvent = this.time.addEvent({ delay: 2000, callback: this.gameOver, callbackScope: this, loop: false });
             this.endResults();
             //this.gameOver();
@@ -404,12 +406,12 @@ addBomb(i,j){
           this.canAdd = false;
           this.addText.setText(canAddCount);
           if (gameOptions.gameMode == 'time') {
-            
-		
-			this.events.emit('addtime',{amount: 15});
+
+
+            this.events.emit('addtime', { amount: 15 });
           } else {
-			this.events.emit('addmoves', {amount: 5});
-            
+            this.events.emit('addmoves', { amount: 5 });
+
           }
         }
       }
@@ -510,7 +512,7 @@ addBomb(i,j){
 
       if (this.draw3.getChainLength() < 2 && this.canRemove == false && this.canRemoveColor == false) {
         let chain = this.draw3.emptyChain();
-        chain.forEach(function(item) {
+        chain.forEach(function (item) {
           this.draw3.customDataOf(item.row, item.column).alpha = 1;
           this.draw3.customDataOf(item.row, item.column).displayWidth = gameOptions.gemSize;
           this.draw3.customDataOf(item.row, item.column).displayHeight = gameOptions.gemSize;
@@ -577,12 +579,14 @@ addBomb(i,j){
         // this.extraText.setText(etemp);
         //var gemtemp = this.gemGoal - gemsEarned;
         //  this.gemText.setText(gemtemp);
+        if (gameOptions.gameMode == 'challenge') {
+          this.events.emit('tally');
+        }
 
-        this.events.emit('tally');
 
         let destroyed = 0;
 
-        gemsToRemove.forEach(function(gem) {
+        gemsToRemove.forEach(function (gem) {
           if (this.draw3.valueAt(gem.row, gem.column) == 6) {
             wildCount--;
           }
@@ -596,7 +600,7 @@ addBomb(i,j){
             alpha: 0,
             duration: gameOptions.destroySpeed,
             callbackScope: this,
-            onComplete: function(event, sprite) {
+            onComplete: function (event, sprite) {
               destroyed--;
               if (destroyed == 0) {
                 this.makeGemsFall();
@@ -611,7 +615,7 @@ addBomb(i,j){
   makeGemsFall() {
     let moved = 0;
     let fallingMovements = this.draw3.arrangeBoardAfterChain();
-    fallingMovements.forEach(function(movement) {
+    fallingMovements.forEach(function (movement) {
       moved++;
       this.tweens.add({
         targets: this.draw3.customDataOf(movement.row, movement.column),
@@ -619,7 +623,7 @@ addBomb(i,j){
         ease: 'Bounce',
         duration: gameOptions.fallSpeed * Math.abs(movement.deltaRow),
         callbackScope: this,
-        onComplete: function() {
+        onComplete: function () {
           moved--;
           if (moved == 0) {
             this.canPick = true;
@@ -628,7 +632,7 @@ addBomb(i,j){
       })
     }.bind(this));
     let replenishMovements = this.draw3.replenishBoard();
-    replenishMovements.forEach(function(movement) {
+    replenishMovements.forEach(function (movement) {
       moved++;
       let sprite = this.poolArray.pop();
       sprite.alpha = 1;
@@ -646,7 +650,7 @@ addBomb(i,j){
         y: gameOptions.offsetY + gameOptions.gemSize * movement.row + gameOptions.gemSize / 2,
         duration: gameOptions.fallSpeed * movement.deltaRow,
         callbackScope: this,
-        onComplete: function() {
+        onComplete: function () {
           moved--;
           if (moved == 0) {
             if (levelOptions.allowCircle) {
@@ -665,14 +669,14 @@ addBomb(i,j){
       });
     }.bind(this))
 
-   if (gameOptions.gameMode == 'moves' || gameOptions.gameMode == 'challenge') {
+    if (gameOptions.gameMode == 'moves' || gameOptions.gameMode == 'challenge') {
       if (this.moveCount >= levelOptions.movesGoal) {
         this.challengeWin = false;
 
 
         var time = this.time.addEvent({
           delay: 500,
-          callback: function() {
+          callback: function () {
             this.scene.pause('playGame');
             this.scene.launch("endGame", { outcome: 0, movesLeft: this.movesLeft, level: onLevel, totalRemoved: this.totalBlocksRemoved });
             this.scene.pause('UI');
@@ -731,7 +735,7 @@ addBomb(i,j){
     }
     let gemsToRemove = this.draw3.removeValue(8, false);
     let destroyed = 0;
-    gemsToRemove.forEach(function(gem) {
+    gemsToRemove.forEach(function (gem) {
       //  if(this.draw3.isValueAt())
       this.poolArray.push(this.draw3.customDataOf(gem.row, gem.column))
       destroyed++;
@@ -741,7 +745,7 @@ addBomb(i,j){
         y: '+=100',
         duration: 300,
         callbackScope: this,
-        onComplete: function(event, sprite) {
+        onComplete: function (event, sprite) {
           destroyed--;
           eightCount--;
           //circlesEarned++;
@@ -763,20 +767,20 @@ addBomb(i,j){
     for (let i = 0; i < this.draw3.getRows(); i++) {
       for (let j = 0; j < this.draw3.getColumns(); j++) {
         if (this.draw3.valueAt(i, j) == 24) {
-          fireArray.push({r: i,c: j});
+          fireArray.push({ r: i, c: j });
         }
       }
     }
-    if(fireArray.length > 0){
+    if (fireArray.length > 0) {
       var rand = Phaser.Math.Between(0, fireArray.length - 1)
-        var nArray = this.draw3.getValidNeighbors(fireArray[rand].r, fireArray[rand].c);
-          if (nArray.length > 0) {
-            var rand = Phaser.Math.Between(0, nArray.length - 1);
+      var nArray = this.draw3.getValidNeighbors(fireArray[rand].r, fireArray[rand].c);
+      if (nArray.length > 0) {
+        var rand = Phaser.Math.Between(0, nArray.length - 1);
 
-            this.draw3.setValue(nArray[rand].r, nArray[rand].c, 24);
-            var dot = this.draw3.customDataOf(nArray[rand].r, nArray[rand].c);
-            dot.setFrame(24);
-          }
+        this.draw3.setValue(nArray[rand].r, nArray[rand].c, 24);
+        var dot = this.draw3.customDataOf(nArray[rand].r, nArray[rand].c);
+        dot.setFrame(24);
+      }
 
 
     }
@@ -840,7 +844,7 @@ addBomb(i,j){
         duration: 300,
         // duration: gameOptions.fallSpeed * Math.abs(1),
         callbackScope: this,
-        onComplete: function() {
+        onComplete: function () {
 
         }
       });
@@ -890,7 +894,7 @@ addBomb(i,j){
   }
   displayPath() {
     let path = this.draw3.getPath();
-    path.forEach(function(item) {
+    path.forEach(function (item) {
       this.arrowArray[item.row][item.column].visible = true;
       if (!this.draw3.isDiagonal(item.direction)) {
         this.arrowArray[item.row][item.column].setFrame(0);
@@ -903,8 +907,8 @@ addBomb(i,j){
     }.bind(this))
   }
   hidePath() {
-    this.arrowArray.forEach(function(item) {
-      item.forEach(function(subItem) {
+    this.arrowArray.forEach(function (item) {
+      item.forEach(function (subItem) {
         subItem.visible = false;
         subItem.angle = 0;
       })
@@ -978,7 +982,7 @@ addBomb(i,j){
         ease: 'Bounce',
         duration: 500,
         callbackScope: this,
-        onComplete: function() {
+        onComplete: function () {
           // console.log('r' + gem.row +', c' + gem.col)
           // console.log(gem.hasRover)
         }
@@ -1042,7 +1046,18 @@ addBomb(i,j){
       }
     }
   }
-
+  resetCounts() {
+    eightCount = 0;
+    wildCount = 0;
+    totalEightCount = 0;
+    circlesEarned = 0;
+    gemsEarned = 0;
+    extraCount = 0;
+    totalGemCount = 0;
+    gemCount = 0;
+    roverCount = 0;
+    fireCount = 0;
+  }
 
 
 }

@@ -169,8 +169,8 @@ class endGame extends Phaser.Scene {
 		this.replayIcon = this.add.image(175, 1150, 'menu_icons', 1).setInteractive();
 		this.previewBox.add(this.replayIcon);
 
-		playText.on('pointerdown', this.play, this);
-		this.replayIcon.on('pointerdown', this.cancel, this);
+		playText.on('pointerup', this.play, this);
+		this.replayIcon.on('pointerup', this.cancel, this);
 
 		localStorage.setItem('SDsave', JSON.stringify(gameSettings));
 
