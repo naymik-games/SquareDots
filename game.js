@@ -59,7 +59,8 @@ class playGame extends Phaser.Scene {
     this.canRemove = false;
     this.canRemoveColor = false;
     this.canAdd = false;
-
+    this.setBomb = false;
+    this.bombLocation = {}
 
 
 
@@ -67,7 +68,8 @@ class playGame extends Phaser.Scene {
     this.draw3 = new Draw3({
       rows: levelOptions.rows,
       columns: levelOptions.cols,
-      items: levelOptions.items
+      items: levelOptions.items,
+      scene: this
     });
 
     var boardWidth = 100 * this.draw3.getColumns();
@@ -662,6 +664,9 @@ class playGame extends Phaser.Scene {
             if (levelOptions.allowFire && !stopFire) {
               this.growFire();
             }
+            if (levelOptions.allowBomb) {
+              this.checkBomb();
+            }
             this.canPick = true;
             stopFire = false;
           }
@@ -723,7 +728,40 @@ class playGame extends Phaser.Scene {
       }
     }
   }
+  bombAction(col) {
+    for (let i = 0; i < this.draw3.getRows(); i++) {
+      for (let j = 0; j < this.draw3.getColumns(); j++) {
+        if (j == col && !this.draw3.isInChain(i, j)) {
+          this.draw3.customDataOf(i, j).alpha = .5;
+          this.draw3.customDataOf(i, j).setScale(.5);
+          this.draw3.putInChain(i, j);
+          if (this.draw3.valueAt(i, j) != this.draw3.getChainValue) {
+            if (this.draw3.valueAt(i, j) == 0) {
+              tally.red++;
 
+            } else if (this.draw3.valueAt(i, j) == 1) {
+              tally.blue++;
+
+            } else if (this.draw3.valueAt(i, j) == 2) {
+              tally.orange++;
+
+            } else if (this.draw3.valueAt(i, j) == 3) {
+              tally.green++;
+
+            } else if (this.draw3.valueAt(i, j) == 4) {
+              tally.purple++;
+
+            } else if (this.draw3.valueAt(i, j) == 5) {
+              tally.brown++;
+
+            }
+            this.events.emit('tally');
+          }
+        }
+
+      }
+    }
+  }
   circleCheck() {
     for (let j = 0; j < this.draw3.getColumns(); j++) {
       if (8 == this.draw3.valueAt(this.draw3.getRows() - 1, j)) {
@@ -804,7 +842,62 @@ class playGame extends Phaser.Scene {
       }
     }
   }
+  checkBomb() {
+    // this.setBomb = false;
+    // this.bombLocation = {}
+    if (this.setBomb) {
+      //console.log(this.bombLocation)
+      var bresult = this.draw3.getValidNeighbors(this.bombLocation.row, this.bombLocation.column)
+      console.log('result ' + JSON.stringify(bresult))
+      if (bresult.length > 0) {
+        for (var b = 0; b < bresult.length; b++) {
+          this.draw3.customDataOf(bresult[b].r, bresult[b].c).alpha = .5;
+          this.draw3.customDataOf(bresult[b].r, bresult[b].c).setScale(.5);
+          this.draw3.putInChain(bresult[b].r, bresult[b].c)
+        }
+        console.log(this.draw3.getChainLength())
+      }
+      //this.draw3.putInChain(this.bombLocation.row, this.bombLocation.column)
 
+
+
+      let gemsToRemove = this.draw3.removeValue(-1, false);
+      let destroyed = 0;
+      gemsToRemove.forEach(function (gem) {
+        //  if(this.draw3.isValueAt())
+        this.poolArray.push(this.draw3.customDataOf(gem.row, gem.column))
+        destroyed++;
+        this.tweens.add({
+          targets: this.draw3.customDataOf(gem.row, gem.column),
+          alpha: 1,
+          //y: '+=100',
+          scale: 2,
+          duration: 300,
+          callbackScope: this,
+          onComplete: function (event, sprite) {
+            destroyed--;
+            eightCount--;
+            //circlesEarned++;
+
+            // tally.circle++
+            this.events.emit('tally');
+            //var ctemp = this.circleGoal - circlesEarned;
+            // this.circleText.setText(ctemp);
+            if (destroyed == 0) {
+              this.makeGemsFall();
+            }
+          }
+        });
+      }.bind(this));
+
+
+
+
+      this.setBomb = false;
+      this.bombLocation = {}
+
+    }
+  }
 
   moveRover() {
     var timeline = this.tweens.createTimeline();

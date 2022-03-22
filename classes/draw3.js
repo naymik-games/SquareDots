@@ -9,37 +9,38 @@ class Draw3 {
     this.rows = (obj.rows != undefined) ? obj.rows : 8;
     this.columns = (obj.columns != undefined) ? obj.columns : 7;
     this.items = (obj.items != undefined) ? obj.items : 6;
-	if(this.items == 2){
-		this.itemArray = [0,1];
-	} else if(this.items == 3){
-		this.itemArray = [0,1,2];
-	} else if(this.items == 4){
-		this.itemArray = [0,1,2,3];
-	} else if(this.items == 5){
-		this.itemArray = [0,1,2,3,4];
-	} else if(this.items == 6){
-		this.itemArray = [0,1,2,3,4,5];
-	}
+    this.scene = obj.scene;
+    if (this.items == 2) {
+      this.itemArray = [0, 1];
+    } else if (this.items == 3) {
+      this.itemArray = [0, 1, 2];
+    } else if (this.items == 4) {
+      this.itemArray = [0, 1, 2, 3];
+    } else if (this.items == 5) {
+      this.itemArray = [0, 1, 2, 3, 4];
+    } else if (this.items == 6) {
+      this.itemArray = [0, 1, 2, 3, 4, 5];
+    }
     this.chain = [];
     this.valueArray = [0, 1, 2, 3, 8];
     this.totalEightCount = 0;
     this.eightCount = 0;
     this.wildCount = 0;
-	this.isSquare = false;
-	this.squareValue = null;
-    this.neighbors = [{r: -1,c:0},{r: -1,c:1},{r: 0,c:1},{r: 1,c:1},{r: 1,c:0},{r: 1,c:-1},{r: 0,c:-1},{r: -1,c:-1}];
-		this.neighbors4 = [{r: -1,c:0},{r: 0,c:1},{r: 1,c:0},{r: 0,c:-1}];
-						
+    this.isSquare = false;
+    this.squareValue = null;
+    this.neighbors = [{ r: -1, c: 0 }, { r: -1, c: 1 }, { r: 0, c: 1 }, { r: 1, c: 1 }, { r: 1, c: 0 }, { r: 1, c: -1 }, { r: 0, c: -1 }, { r: -1, c: -1 }];
+    this.neighbors4 = [{ r: -1, c: 0 }, { r: 0, c: 1 }, { r: 1, c: 0 }, { r: 0, c: -1 }];
+
   }
 
   // returns the number of rows in board
   getRows() {
     return this.rows;
   }
-generateInitialBoard(){
-	let totalSquares = this.getRows() * this.getColumns;
-	
-}
+  generateInitialBoard() {
+    let totalSquares = this.getRows() * this.getColumns;
+
+  }
   generateNewValue() {
     let tempval;
 
@@ -55,7 +56,7 @@ generateInitialBoard(){
     } else if (levelOptions.allowFire && Phaser.Math.Between(1, 100) < 5 && fireCount < levelOptions.maxFire) {
       fireCount++;
       tempval = 24;
-    }else if (levelOptions.allowGems && Phaser.Math.Between(1, 100) < 5 && gemCount < levelOptions.maxGems && totalGemCount < levelOptions.maxTotalGems) {
+    } else if (levelOptions.allowGems && Phaser.Math.Between(1, 100) < 5 && gemCount < levelOptions.maxGems && totalGemCount < levelOptions.maxTotalGems) {
       //tempval = Phaser.Math.RND.pick(this.valueArray);
       gemCount++;
       totalGemCount++;
@@ -65,35 +66,35 @@ generateInitialBoard(){
       tempval = gemArray[gem];
 
     } else {
-		if(this.isSquare){
-			tempval = this.getRandomWithOneExclusion(this.itemArray.length,this.squareValue)
-		} else {
-			tempval = Math.floor(Math.random() * this.items);
-		}
-      
+      if (this.isSquare) {
+        tempval = this.getRandomWithOneExclusion(this.itemArray.length, this.squareValue)
+      } else {
+        tempval = Math.floor(Math.random() * this.items);
+      }
+
     }
 
     return tempval;
   }
-  
-  getRandomWithOneExclusion(lengthOfArray,indexToExclude){
 
-	  var rand = null;  //an integer
+  getRandomWithOneExclusion(lengthOfArray, indexToExclude) {
 
-		while(rand === null || rand === indexToExclude){
-		   rand = Math.round(Math.random() * (lengthOfArray - 1));
-		}
+    var rand = null;  //an integer
 
-	  return rand;
+    while (rand === null || rand === indexToExclude) {
+      rand = Math.round(Math.random() * (lengthOfArray - 1));
+    }
+
+    return rand;
   }
-  
+
   // returns the number of columns in board
   getColumns() {
     return this.columns;
   }
-printIt(i,j){
-  console.log(JSON.stringify(this.extraArray[i][j]));
-}
+  printIt(i, j) {
+    console.log(JSON.stringify(this.extraArray[i][j]));
+  }
   // generates the game field
   generateField() {
     this.gameArray = [];
@@ -134,29 +135,29 @@ printIt(i,j){
     return row >= 0 && row < this.getRows() && column >= 0 && column < this.getColumns() && this.gameArray[row] != undefined && this.gameArray[row][column] != undefined;
   }
 
-  getValidNeighbors(row,column){
-	  var result = [];
-	  for(var n = 0; n < 8; n++){
-		  if(this.validPick(row + this.neighbors[n].r, column + this.neighbors[n].c) && this.valueAt(row + this.neighbors[n].r, column + this.neighbors[n].c) != 24){
-			  result.push({r: row + this.neighbors[n].r, c: column + this.neighbors[n].c})
-		  }
-	  }
-	  return result;
-  }
-  isNeighborFire(row,column){
+  getValidNeighbors(row, column) {
     var result = [];
-	  for(var n = 0; n < 4; n++){
-	    var rand = Phaser.Math.Between(0, levelOptions.items - 1)
-		  if(this.validPick(row + this.neighbors4[n].r, column + this.neighbors4[n].c) && this.valueAt(row + this.neighbors4[n].r, column + this.neighbors4[n].c) == 24){
-			  this.gameArray[row + this.neighbors4[n].r][column + this.neighbors4[n].c].customData.setFrame(rand)
-			  this.gameArray[row + this.neighbors4[n].r][column + this.neighbors4[n].c].value = rand;
+    for (var n = 0; n < 8; n++) {
+      if (this.validPick(row + this.neighbors[n].r, column + this.neighbors[n].c) && this.valueAt(row + this.neighbors[n].r, column + this.neighbors[n].c) != 24) {
+        result.push({ r: row + this.neighbors[n].r, c: column + this.neighbors[n].c })
+      }
+    }
+    return result;
+  }
+  isNeighborFire(row, column) {
+    var result = [];
+    for (var n = 0; n < 4; n++) {
+      var rand = Phaser.Math.Between(0, levelOptions.items - 1)
+      if (this.validPick(row + this.neighbors4[n].r, column + this.neighbors4[n].c) && this.valueAt(row + this.neighbors4[n].r, column + this.neighbors4[n].c) == 24) {
+        this.gameArray[row + this.neighbors4[n].r][column + this.neighbors4[n].c].customData.setFrame(rand)
+        this.gameArray[row + this.neighbors4[n].r][column + this.neighbors4[n].c].value = rand;
 
-			  result.push({r: row + this.neighbors4[n].r, c: column + this.neighbors4[n].c})
-		  }
-	  }
-	  if(result.length > 0){
-	  return true;
-	  }
+        result.push({ r: row + this.neighbors4[n].r, c: column + this.neighbors4[n].c })
+      }
+    }
+    if (result.length > 0) {
+      return true;
+    }
   }
   // returns the value of the item at (row, column), or false if it's not a valid pick
   valueAt(row, column) {
@@ -165,12 +166,12 @@ printIt(i,j){
     }
     return this.gameArray[row][column].value;
   }
-  setValue(row,column,value){
+  setValue(row, column, value) {
     this.gameArray[row][column].value = value;
   }
   //check for squares that can't be selected
   checkNonSelect(row, column) {
-    return this.valueAt(row, column) == 8 || this.valueAt(row, column) == 24 ||this.valueAt(row, column) == 17 || this.valueAt(row, column) == 18 || this.valueAt(row, column) == 19 || this.valueAt(row, column) == 20 || this.valueAt(row, column) == 21 || this.valueAt(row, column) == 22;
+    return this.valueAt(row, column) == 8 || this.valueAt(row, column) == 24 || this.valueAt(row, column) == 17 || this.valueAt(row, column) == 18 || this.valueAt(row, column) == 19 || this.valueAt(row, column) == 20 || this.valueAt(row, column) == 21 || this.valueAt(row, column) == 22;
   }
   // sets a custom data of the item at (row, column)
   setCustomData(row, column, customData) {
@@ -180,7 +181,7 @@ printIt(i,j){
   setCustomDataExtra(row, column, customData) {
     this.extraArray[row][column].customData = customData;
   }
-  
+
   // returns the custom data of the item at (row, column)
   customDataOf(row, column) {
     return this.gameArray[row][column].customData;
@@ -188,7 +189,7 @@ printIt(i,j){
   customDataExtraOf(row, column) {
     return this.extraArray[row][column].customData;
   }
-  
+
 
   wildStart() {
     return this.valueAt(this.getNthChainItem(0).row, this.getNthChainItem(0).column) == 6;
@@ -311,7 +312,7 @@ printIt(i,j){
   // clears the chain and returns the items
   emptyChain() {
     let result = [];
-    this.chain.forEach(function(item) {
+    this.chain.forEach(function (item) {
       result.push(item);
     })
     this.chain = [];
@@ -322,7 +323,7 @@ printIt(i,j){
   // clears the chain, set items as empty and returns the items
   destroyChain() {
     let result = [];
-    this.chain.forEach(function(item) {
+    this.chain.forEach(function (item) {
       result.push(item);
       this.setEmpty(item.row, item.column)
     }.bind(this))
@@ -331,11 +332,11 @@ printIt(i,j){
     return result;
   }
   removeValue(value, square) {
-   // console.log('value ' + value);
+    // console.log('value ' + value);
     // this.getChainValue() == this.valueAt(row, column)
     if (square) {
-		this.isSquare = true;
-		this.squareValue = value;
+      this.isSquare = true;
+      this.squareValue = value;
       for (let i = 0; i < this.getRows(); i++) {
         for (let j = 0; j < this.getColumns(); j++) {
           // let itemtemp = this.gameArray[i][j];
@@ -349,19 +350,19 @@ printIt(i,j){
       }
     }
     let result = [];
-    this.chain.forEach(function(item) {
+    this.chain.forEach(function (item) {
       result.push(item);
-      if(this.isNeighborFire(item.row, item.column)){
+      if (this.isNeighborFire(item.row, item.column)) {
         console.log('fire out')
         stopFire = true;
-      } 
-      
+      }
+
       if (this.isGem(item.row, item.column)) {
         gemCount--;
         gemsEarned++
         //console.log('gem action');
       }
-      
+
       this.setEmpty(item.row, item.column)
       //ice
       for (var i = 0; i < this.getRows(); i++) {
@@ -375,7 +376,7 @@ printIt(i,j){
                 this.extraArray[i][j].hasExtra = false;
                 extraCount++;
                 tally.ice++;
-               // this.events.emit('tally');
+                // this.events.emit('tally');
               } else if (this.getExtraValue(i, j) == 1) {
                 var val = this.getExtraValue(i, j);
                 val--;
@@ -394,7 +395,7 @@ printIt(i,j){
           }
         }
       }
-      
+
       //bombs
       for (var i = 0; i < this.getRows(); i++) {
         for (var j = 0; j < this.getColumns(); j++) {
@@ -405,9 +406,18 @@ printIt(i,j){
               if (this.getExtraValue(i, j) == 0) {
                 this.extraArray[i][j].customData.setAlpha(0);
                 this.extraArray[i][j].hasBomb = false;
-               // extraCount++;
+                // extraCount++;
+                //var bomb = this.getValidNeighbors(i, j)
+                //if (bomb.length > 0) {
+                //for (var b = 0; b < bomb.length; b++) {
+                //result.push({ row: bomb[b].r, column: bomb[b].c })
+                this.scene.setBomb = true;
+                this.scene.bombLocation = { row: i, column: j }
+                //}
+                // }
                 tally.bomb++;
-               // this.events.emit('tally');
+
+                // this.events.emit('tally');
               } else if (this.getExtraValue(i, j) == 1) {
                 var val = this.getExtraValue(i, j);
                 val--;
@@ -426,15 +436,15 @@ printIt(i,j){
           }
         }
       }
-      
-      
-      
-      
+
+
+
+
     }.bind(this))
     this.chain = [];
     this.chain.length = 0;
     //let value = this.getChainValue();
-
+    console.log(result)
     return result;
   }
   // checks if the items at (row, column) and (row2, column2) are the same
@@ -458,40 +468,40 @@ printIt(i,j){
     this.gameArray[row][column] = Object.assign(this.gameArray[row2][column2]);
     this.gameArray[row2][column2] = Object.assign(tempObject);
     return [{
-        row: row,
-        column: column,
-        deltaRow: row - row2,
-        deltaColumn: column - column2
-        },
-      {
-        row: row2,
-        column: column2,
-        deltaRow: row2 - row,
-        deltaColumn: column2 - column
-        }]
+      row: row,
+      column: column,
+      deltaRow: row - row2,
+      deltaColumn: column - column2
+    },
+    {
+      row: row2,
+      column: column2,
+      deltaRow: row2 - row,
+      deltaColumn: column2 - column
+    }]
   }
 
   // set the item at (row, column) as empty
   setEmpty(row, column) {
     this.gameArray[row][column].isEmpty = true;
   }
-  
+
   setExtra(row, column) {
     this.extraArray[row][column].hasExtra = true;
   }
-  
+
   setExtraValue(row, column, value) {
     this.extraArray[row][column].value = value;
   }
   setBomb(row, column) {
     this.extraArray[row][column].hasBomb = true;
   }
-  
-  
+
+
   getExtraValue(row, column) {
     return this.extraArray[row][column].value;
   }
-  
+
   // returns true if the item at (row, column) is empty
   isEmpty(row, column) {
     return this.gameArray[row][column].isEmpty;
@@ -547,8 +557,8 @@ printIt(i,j){
         let emptySpaces = this.emptySpacesBelow(0, i) + 1;
         for (let j = 0; j < emptySpaces; j++) {
           // let randomValue = Math.floor(Math.random() * this.items);
-          
-		  let randomValue = this.generateNewValue();
+
+          let randomValue = this.generateNewValue();
           result.push({
             row: j,
             column: i,
@@ -561,8 +571,8 @@ printIt(i,j){
         }
       }
     }
-	this.isSquare = false;
-	this.squareValue = null;
+    this.isSquare = false;
+    this.squareValue = null;
     return result;
   }
 }

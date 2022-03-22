@@ -33,7 +33,10 @@ class endGame extends Phaser.Scene {
 			if (this.outcome == 1) {
 				this.timeline = this.tweens.createTimeline();
 				var message = 'Success!'
-				gameSettings.levelStatus[onLevel + 1] = 0;
+				if (gameSettings.levelStatus[onLevel + 1] == -1) {
+					gameSettings.levelStatus[onLevel + 1] = 0;
+				}
+
 				if (this.movesLeft < 2) {
 					gameSettings.levelStatus[onLevel] = '*';
 					var star1 = this.add.image(1450, 850, 'star').setScale(2);
@@ -193,7 +196,7 @@ class endGame extends Phaser.Scene {
 		this.scene.stop('playGame');
 		this.scene.stop('UI');
 		this.scene.stop('endGame');
-		
+
 		if (gameMode == 'challenge') {
 			this.scene.start('selectGame')
 		} else {
@@ -212,7 +215,10 @@ class endGame extends Phaser.Scene {
 		if (gameOptions.gameMode == 'challenge') {
 			if (this.outcome == 1) {
 				var message = 'Success!'
-				gameSettings.levelStatus[onLevel + 1] = 0;
+				if (gameSettings.levelStatus[onLevel + 1] === -1) {
+					//	gameSettings.levelStatus[onLevel + 1] = 0;
+				}
+
 				if (this.movesLeft < 2) {
 					gameSettings.levelStatus[onLevel] = '*';
 				} else if (this.movesLeft < 5) {

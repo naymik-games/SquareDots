@@ -315,7 +315,7 @@ class UI extends Phaser.Scene {
         } else {
           x = i;
         }
-        this.bombIcon = this.add.image(220 + x * 200, y, 'gems', 25).setScale(.7).setAlpha(1);
+        this.bombIcon = this.add.image(220 + x * 200, y, 'gems', 30).setScale(.7).setAlpha(1);
         this.bombText = this.add.bitmapText(270 + x * 200, y, 'atari', '0', 50).setOrigin(0, .5).setTint(0xffffff).setAlpha(1);
         this.bombGoal = value;
         this.bombText.setText(value);
