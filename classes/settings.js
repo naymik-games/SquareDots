@@ -10,6 +10,7 @@ let gameOptions = {
 
 
 }
+let defaultSettings = {}
 let stopFire = false;
 let gameMode;
 let tally = { red: 0, blue: 0, orange: 0, green: 0, purple: 0, brown: 0, circle: 0, rover: 0, ice: 0, fire: 0, square: 0, bomb: 0 }
