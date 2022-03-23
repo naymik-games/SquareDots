@@ -269,7 +269,7 @@ class preview extends Phaser.Scene {
       }
       if (key == 'bomb') {
         if (i > 2) {
-          y = 160;
+          y = 760;
           x = i - 3;
         } else {
           x = i;

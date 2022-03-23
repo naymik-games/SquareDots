@@ -13,7 +13,7 @@ window.onload = function () {
       height: 1640
     },
 
-    scene: [preloadGame, startGame, selectGame, preview, playGame, UI, pauseGame, endGame]
+    scene: [preloadGame, startGame, selectGame, options, preview, playGame, UI, pauseGame, endGame]
   }
   game = new Phaser.Game(gameConfig);
   window.focus();
@@ -63,6 +63,10 @@ class playGame extends Phaser.Scene {
     this.bombLocation = {}
 
 
+    this.backgroundMusic = this.sound.add("music1", { loop: true });
+    if (appSettings.music) {
+      this.backgroundMusic.play()
+    }
 
 
     this.draw3 = new Draw3({
@@ -727,6 +731,9 @@ class playGame extends Phaser.Scene {
             this.scene.pause('playGame');
             this.scene.launch("endGame", { outcome: 0, movesLeft: this.movesLeft, level: onLevel, totalRemoved: this.totalBlocksRemoved });
             this.scene.pause('UI');
+            if (appSettings.music) {
+              this.backgroundMusic.pause()
+            }
           },
           callbackScope: this
         })

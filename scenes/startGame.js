@@ -4,8 +4,8 @@ class startGame extends Phaser.Scene {
   }
   preload() {
     //this.load.bitmapFont('atari', 'assets/fonts/atari-smooth.png', 'assets/fonts/atari-smooth.xml');
-   // this.load.bitmapFont('atari', 'assets/fonts/Lato_0.png', 'assets/fonts/lato.xml');
-    
+    // this.load.bitmapFont('atari', 'assets/fonts/Lato_0.png', 'assets/fonts/lato.xml');
+
   }
   create() {
 
@@ -15,6 +15,11 @@ class startGame extends Phaser.Scene {
       gameSettings = defaultValues;
     }
 
+    appSettings = JSON.parse(localStorage.getItem('SDoptions'));
+    if (appSettings === null || appSettings.length <= 0) {
+      localStorage.setItem('SDoptions', JSON.stringify(defaultSettings));
+      appSettings = defaultSettings;
+    }
     onGroup = gameSettings.group;
     //  gameOptions.boardOffset.x = game.config.width / 2 - ((()) / 2;
     var off = (game.config.width - levelOptions.cols * gameOptions.gemSize) / 2;
@@ -38,29 +43,31 @@ class startGame extends Phaser.Scene {
 
     var startChallengeIcon = this.add.image(game.config.width / 2 - 225, 1200, 'icons', 2);
     var startChallenge = this.add.bitmapText(game.config.width / 2 - 50, 1075, 'atari', 'Play Challenge', 50).setOrigin(0, .5).setTint(0x000000);
-   var temp = gameSettings.currentLevel + 1;
+    var temp = gameSettings.currentLevel + 1;
     var currentLevel = this.add.bitmapText(game.config.width / 2 - 50, 1150, 'atari', 'Level: ' + temp, 40).setOrigin(0, .5).setTint(0x000000);;
 
     startChallengeIcon.setInteractive();
     startChallengeIcon.on('pointerup', this.clickHandler3, this);
 
+    this.optionsButton = this.add.image(game.config.width / 2, game.config.height - 150, 'menu_icons', 4).setOrigin(0).setInteractive().setScale(1.5).setTint(0xc76210);
+    this.optionsButton.on('pointerdown', function () {
+      this.scene.start('options');
+    }, this)
+
   }
-  clickHandler()
-  {
+  clickHandler() {
     gameOptions.gameMode = 'time';
     //  Dispatch a Scene event
     this.scene.start('playGame');
     this.scene.launch('UI');
   }
-  clickHandler2()
-  {
+  clickHandler2() {
     gameOptions.gameMode = 'moves';
     //  Dispatch a Scene event
     this.scene.start('playGame');
     this.scene.launch('UI');
   }
-  clickHandler3()
-  {
+  clickHandler3() {
     this.input.stopPropagation();
     gameOptions.gameMode = 'challenge';
     //  Dispatch a Scene event

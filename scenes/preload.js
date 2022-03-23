@@ -3,9 +3,9 @@ class preloadGame extends Phaser.Scene {
     super("PreloadGame");
   }
   preload() {
-  
-	 
-	 var progressBar = this.add.graphics();
+
+
+    var progressBar = this.add.graphics();
     var progressBox = this.add.graphics();
     progressBox.fillStyle(0x222222, 0.8);
     progressBox.fillRect(240, 270, 320, 50);
@@ -46,18 +46,18 @@ class preloadGame extends Phaser.Scene {
 
     assetText.setOrigin(0.5, 0.5);
 
-    this.load.on('progress', function(value) {
+    this.load.on('progress', function (value) {
       percentText.setText(parseInt(value * 100) + '%');
       progressBar.clear();
       progressBar.fillStyle(0xffffff, 1);
       progressBar.fillRect(250, 280, 300 * value, 30);
     });
 
-    this.load.on('fileprogress', function(file) {
+    this.load.on('fileprogress', function (file) {
       assetText.setText('Loading asset: ' + file.key);
     });
 
-    this.load.on('complete', function() {
+    this.load.on('complete', function () {
       progressBar.destroy();
       progressBox.destroy();
       loadingText.destroy();
@@ -68,27 +68,27 @@ class preloadGame extends Phaser.Scene {
     this.load.image("particle", "assets/particles.png");
     for (var i = 0; i < 125; i++) {
       this.load.image("particle", "assets/particles.png");
-    } 
-	  
-	  
-	  
-	 
+    }
+
+
+
+
     //this.load.image("particle", "assets/sprites/particle.png");
     this.load.bitmapFont('atari', 'assets/fonts/topaz.png', 'assets/fonts/topaz.xml');
     this.load.spritesheet("menu_icons", "assets/sprites/icons.png", {
       frameWidth: 96,
       frameHeight: 96
     });
-    this.load.spritesheet("gems", "assets/sprites/gems.png", {
+    this.load.spritesheet("gems", "assets/sprites/gems_round.png", {
       frameWidth: 100,
       frameHeight: 100
     });
-    
+
     this.load.spritesheet("icons", "assets/sprites/menu_icons.png", {
       frameWidth: 300,
       frameHeight: 300
     });
-	this.load.spritesheet("select_icons", "assets/sprites/select_icons.png", {
+    this.load.spritesheet("select_icons", "assets/sprites/select_icons.png", {
       frameWidth: 300,
       frameHeight: 300
     });
@@ -100,11 +100,19 @@ class preloadGame extends Phaser.Scene {
       frameWidth: 100,
       frameHeight: 100
     });
+    this.load.spritesheet("switch", "assets/sprites/switch.png", {
+      frameWidth: 115,
+      frameHeight: 66,
+      margin: 1,
+      spacing: 1
+    });
     this.load.image('check', 'assets/sprites/check.png');
-	this.load.image('star', 'assets/sprites/star.png');
-	this.load.image('modal', 'assets/sprites/modal.png');
-	this.load.image('blank', 'assets/sprites/blank.png');
-	this.load.image('other_icons', 'assets/sprites/icons.png');
+    this.load.image('star', 'assets/sprites/star.png');
+    this.load.image('modal', 'assets/sprites/modal.png');
+    this.load.image('blank', 'assets/sprites/blank.png');
+    this.load.image('other_icons', 'assets/sprites/icons.png');
+
+    this.load.audio("music1", ["assets/sound/music1.mp3"]);
   }
   create() {
     this.scene.start("startGame");

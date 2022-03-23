@@ -43,6 +43,7 @@ class UI extends Phaser.Scene {
 
 
     var Main = this.scene.get('playGame');
+    this.main = Main
     Main.events.on('dots', function (data) {
       var string = data.dots;
       this.dots = data.dots
@@ -88,6 +89,10 @@ class UI extends Phaser.Scene {
         this.scene.pause('playGame');
         this.scene.launch("endGame", { outcome: 1, movesLeft: this.movesLeft, totalRemoved: this.dots });
         this.scene.pause('UI');
+        if (appSettings.music) {
+          this.main.backgroundMusic.pause()
+        }
+
 
       }
     }
@@ -453,6 +458,9 @@ class UI extends Phaser.Scene {
           this.scene.pause('playGame');
           this.scene.launch("endGame", { outcome: 1, movesLeft: levelOptions.movesGoal - this.movesLeft, level: onLevel });
           this.scene.pause('UI');
+          if (appSettings.music) {
+            this.main.backgroundMusic.pause()
+          }
         },
         callbackScope: this
       })
