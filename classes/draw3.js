@@ -121,7 +121,7 @@ class Draw3 {
         //   randomValue = 8;
         this.extraArray[i][j] = {
           value: 2,
-          hasExtra: false,
+          hasExtra: false,//ice
           hasRover: false,
           hasBomb: false,
           row: i,
