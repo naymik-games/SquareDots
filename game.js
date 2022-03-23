@@ -151,6 +151,9 @@ class playGame extends Phaser.Scene {
     this.draw3.generateExtra();
     // this.generateRover();
     this.drawField();
+    if (levelOptions.allowBlocks) {
+      this.drawBlock();
+    }
     if (levelOptions.allowExtra) {
       this.drawExtra();
     }
@@ -271,16 +274,55 @@ class playGame extends Phaser.Scene {
 
 
   drawExtra() {
-    for (let x = 0; x < levelOptions.extras; x++) {
-
+    var e = 0;
+    while (e < levelOptions.extras) {
       var j = Phaser.Math.Between(0, levelOptions.cols - 1);
       var i = Phaser.Math.Between(0, levelOptions.rows - 1);
+      if (!this.draw3.isBlock(i, j)) {
+        this.addExtra(i, j);
+        e++;
+      }
+    }
+
+
+
+  }
+  addExtra(i, j) {
+    var j = Phaser.Math.Between(0, levelOptions.cols - 1);
+    var i = Phaser.Math.Between(0, levelOptions.rows - 1);
+
+    let posX = gameOptions.offsetX + gameOptions.gemSize * j + gameOptions.gemSize / 2;
+    let posY = gameOptions.offsetY + gameOptions.gemSize * i + gameOptions.gemSize / 2;
+    //var val = this.draw3.valueAt(i, j);
+    //let gem = this.add.sprite(posX, posY, "gems", this.draw3.valueAt(i, j));
+    let gem = this.add.sprite(-100, posY, "gems", 16);
+    gem.displayWidth = gameOptions.gemSize;
+    gem.displayHeight = gameOptions.gemSize;
+    gem.setAlpha(1);
+    this.tweens.add({
+      targets: gem,
+      x: posX,
+      delay: 300,
+      ease: 'Bounce',
+      duration: 500,
+      callbackScope: this,
+      onComplete: function () {
+
+      }
+    });
+    this.draw3.setExtra(i, j);
+    this.draw3.setCustomDataExtra(i, j, gem);
+  }
+  drawBlock() {
+    for (let x = 0; x < levelOptions.blocks.length; x++) {
+
+      var j = levelOptions.blocks[x].col;
+      var i = levelOptions.blocks[x].row;
 
       let posX = gameOptions.offsetX + gameOptions.gemSize * j + gameOptions.gemSize / 2;
       let posY = gameOptions.offsetY + gameOptions.gemSize * i + gameOptions.gemSize / 2;
-      //var val = this.draw3.valueAt(i, j);
-      //let gem = this.add.sprite(posX, posY, "gems", this.draw3.valueAt(i, j));
-      let gem = this.add.sprite(-100, posY, "gems", 16);
+
+      let gem = this.add.sprite(-100, posY, "gems", 31);
       gem.displayWidth = gameOptions.gemSize;
       gem.displayHeight = gameOptions.gemSize;
       gem.setAlpha(1);
@@ -295,18 +337,17 @@ class playGame extends Phaser.Scene {
 
         }
       });
-      this.draw3.setExtra(i, j);
+      this.draw3.setBlock(i, j);
       this.draw3.setCustomDataExtra(i, j, gem);
+      this.draw3.setExtraValue(i, j, 31)
     }
-
   }
-
   drawBomb() {
     var b = 0;
     while (b < levelOptions.maxBomb) {
       var j = Phaser.Math.Between(0, levelOptions.cols - 1);
       var i = Phaser.Math.Between(0, levelOptions.rows - 1);
-      if (!this.draw3.isExtra(i, j)) {
+      if (!this.draw3.isExtra(i, j) && !this.draw3.isBlock(i, j)) {
         this.addBomb(i, j);
         b++;
       }
@@ -423,6 +464,7 @@ class playGame extends Phaser.Scene {
     if (this.dragging) {
       let row = Math.floor((pointer.y - gameOptions.offsetY) / gameOptions.gemSize);
       let col = Math.floor((pointer.x - gameOptions.offsetX) / gameOptions.gemSize);
+      if (this.draw3.checkNonSelect(row, col)) { return }
       if (this.draw3.validPick(row, col)) {
         let distance = Phaser.Math.Distance.Between(pointer.x, pointer.y, this.draw3.customDataOf(row, col).x, this.draw3.customDataOf(row, col).y);
         if (distance < gameOptions.gemSize * 0.4) {

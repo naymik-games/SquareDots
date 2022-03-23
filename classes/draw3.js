@@ -124,17 +124,21 @@ class Draw3 {
           hasExtra: false,//ice
           hasRover: false,
           hasBomb: false,
+          hasBlock: false,
           row: i,
           column: j
         }
       }
     }
+    console.log(this.extraArray)
   }
   // returns true if the item at (row, column) is a valid pick
   validPick(row, column) {
     return row >= 0 && row < this.getRows() && column >= 0 && column < this.getColumns() && this.gameArray[row] != undefined && this.gameArray[row][column] != undefined;
   }
-
+  validPickExtra(row, column) {
+    return row >= 0 && row < this.getRows() && column >= 0 && column < this.getColumns() && this.extraArray[row] != undefined && this.extraArray[row][column] != undefined;
+  }
   getValidNeighbors(row, column) {
     var result = [];
     for (var n = 0; n < 8; n++) {
@@ -166,12 +170,18 @@ class Draw3 {
     }
     return this.gameArray[row][column].value;
   }
+  valueAtExtra(row, column) {
+    if (!this.validPickExtra(row, column)) {
+      return false;
+    }
+    return this.extraArray[row][column].value;
+  }
   setValue(row, column, value) {
     this.gameArray[row][column].value = value;
   }
   //check for squares that can't be selected
   checkNonSelect(row, column) {
-    return this.valueAt(row, column) == 8 || this.valueAt(row, column) == 24 || this.valueAt(row, column) == 17 || this.valueAt(row, column) == 18 || this.valueAt(row, column) == 19 || this.valueAt(row, column) == 20 || this.valueAt(row, column) == 21 || this.valueAt(row, column) == 22;
+    return this.valueAt(row, column) == 8 || this.valueAt(row, column) == 24 || this.valueAt(row, column) == 17 || this.valueAt(row, column) == 18 || this.valueAt(row, column) == 19 || this.valueAt(row, column) == 20 || this.valueAt(row, column) == 21 || this.valueAt(row, column) == 22 || this.valueAtExtra(row, column) == 31;
   }
   // sets a custom data of the item at (row, column)
   setCustomData(row, column, customData) {
@@ -489,6 +499,9 @@ class Draw3 {
   setExtra(row, column) {
     this.extraArray[row][column].hasExtra = true;
   }
+  setBlock(row, column) {
+    this.extraArray[row][column].hasBlock = true;
+  }
 
   setExtraValue(row, column, value) {
     this.extraArray[row][column].value = value;
@@ -508,6 +521,9 @@ class Draw3 {
   }
   isExtra(row, column) {
     return this.extraArray[row][column].hasExtra;
+  }
+  isBlock(row, column) {
+    return this.extraArray[row][column].hasBlock;
   }
   isBomb(row, column) {
     return this.extraArray[row][column].hasBomb;
