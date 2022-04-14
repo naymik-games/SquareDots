@@ -45,16 +45,17 @@ class selectGame extends Phaser.Scene {
       if (swipeNormal.x < -0.8) {
         console.log('left')
         this.nextGroup(obj[0], 'left')
+
       }
       if (swipeNormal.y > 0.8) {
-        console.log('down')
+
         //this.handleMove(1, 0);
       }
       if (swipeNormal.y < -0.8) {
-        console.log('up')
+
         //this.handleMove(-1, 0);
       }
-    }  else {
+    } else {
       console.log('tap')
       if (obj[0].level > -1) {
         onLevel = obj[0].level;
@@ -63,7 +64,7 @@ class selectGame extends Phaser.Scene {
         this.scene.launch('preview', { level: onLevel, group: this.startGroup });
       }
 
-    } 
+    }
   }
 
   showGroup(groupNum, dir) {
@@ -175,7 +176,7 @@ class selectGame extends Phaser.Scene {
     });
 
   }
-  preGroup(block, dir) {
+  nextGroup(block, dir) {
     if (this.startGroup < groups.length - 1) {
       this.startGroup++;
     } else {
@@ -183,7 +184,7 @@ class selectGame extends Phaser.Scene {
     }
     this.hideGroup(this.startGroup, dir);
   }
-  nextGroup(block, dir) {
+  preGroup(block, dir) {
     if (this.startGroup > 0) {
       this.startGroup--;
     } else {
@@ -195,7 +196,7 @@ class selectGame extends Phaser.Scene {
 
     if (block.level == -2) {
       this.scene.start('startGame');
-    } 
+    }
 
   }
 
