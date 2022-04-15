@@ -55,6 +55,8 @@ class preview extends Phaser.Scene {
   play() {
     onLevel = this.level;
     onGroup = this.group;
+    gameSettings.group = onGroup;
+    localStorage.setItem('SDsave', JSON.stringify(gameSettings));
     gameMode = 'challenge'
     this.scene.stop();
     this.scene.stop('selectGame')
