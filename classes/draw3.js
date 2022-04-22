@@ -388,14 +388,14 @@ class Draw3 {
                 tally.ice++;
                 // this.events.emit('tally');
               } else if (this.getExtraValue(i, j) == 1) {
-                var val = this.getExtraValue(i, j);
-                val--;
+                var val = 0;
+
                 this.setExtraValue(i, j, val);
                 //console.log('extra val ' + this.getExtraValue(i,j));
                 this.extraArray[i][j].customData.setFrame(29);
               } else if (this.getExtraValue(i, j) == 2) {
-                var val = this.getExtraValue(i, j);
-                val--;
+                var val = 1;
+
                 this.setExtraValue(i, j, val);
                 //console.log('extra val ' + this.getExtraValue(i,j));
                 this.extraArray[i][j].customData.setFrame(28);
