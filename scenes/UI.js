@@ -453,7 +453,7 @@ class UI extends Phaser.Scene {
       //this.scene.start("start");
       //this.scene.stop('PlayGame');
       var time = this.time.addEvent({
-        delay: 500,
+        delay: 1500,
         callback: function () {
           this.scene.pause('playGame');
           this.scene.launch("endGame", { outcome: 1, movesLeft: levelOptions.movesGoal - this.movesLeft, level: onLevel });
