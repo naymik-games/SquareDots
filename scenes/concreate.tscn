@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvf46mjwgefk3"]
+
+[ext_resource type="Script" path="res://scripts/concreate.gd" id="1_rv2ub"]
+[ext_resource type="Texture2D" uid="uid://c35h6ktuwmtwx" path="res://assets/7.png" id="2_d5bvm"]
+
+[node name="concreate" type="Node2D"]
+script = ExtResource("1_rv2ub")
+color = "concrete"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_d5bvm")

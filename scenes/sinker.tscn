@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bn2jsw0wlv43y"]
+
+[ext_resource type="PackedScene" uid="uid://cm2uawsmad05c" path="res://scenes/piece.tscn" id="1_g2bt0"]
+[ext_resource type="Texture2D" uid="uid://bh30vgl2kshyr" path="res://assets/Golden3.png" id="2_06rq2"]
+
+[node name="sinker" instance=ExtResource("1_g2bt0")]
+color = "sinker"
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_06rq2")

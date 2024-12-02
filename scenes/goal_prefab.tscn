@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://54ghaojkrd7v"]
+
+[ext_resource type="Texture2D" uid="uid://bw5uaxmjp0o5b" path="res://assets/Blue.png" id="1_i66vn"]
+[ext_resource type="Script" path="res://scripts/goal_prefab.gd" id="1_lxvuc"]
+[ext_resource type="FontFile" uid="uid://b2hbbexex58a3" path="res://assets/monogram-extended.ttf" id="2_c0q4u"]
+
+[node name="goal_prefab" type="MarginContainer"]
+custom_minimum_size = Vector2(60, 80)
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+script = ExtResource("1_lxvuc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("1_i66vn")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_c0q4u")
+theme_override_font_sizes/font_size = 25
+horizontal_alignment = 1

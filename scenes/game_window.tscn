@@ -1,0 +1,137 @@
+[gd_scene load_steps=17 format=3 uid="uid://b4852fa8i04xy"]
+
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_1owbx"]
+[ext_resource type="Script" path="res://scripts/grid.gd" id="2_pbelb"]
+[ext_resource type="Script" path="res://scripts/line_layer.gd" id="3_b5isi"]
+[ext_resource type="PackedScene" uid="uid://bn2jsw0wlv43y" path="res://scenes/sinker.tscn" id="3_hbrup"]
+[ext_resource type="Script" path="res://scripts/ice_holder.gd" id="3_j3uie"]
+[ext_resource type="PackedScene" uid="uid://bxdcnkh223xbo" path="res://scenes/game_win_panel.tscn" id="3_yaomi"]
+[ext_resource type="Script" path="res://scripts/concreate_holder.gd" id="4_ycjt2"]
+[ext_resource type="Script" path="res://scripts/fire_holder.gd" id="5_sdv13"]
+[ext_resource type="Script" path="res://scripts/goal_holder.gd" id="5_sng36"]
+[ext_resource type="PackedScene" uid="uid://d01157ibsuw65" path="res://scenes/goal.tscn" id="6_433oy"]
+[ext_resource type="PackedScene" uid="uid://dwhhff8221gg5" path="res://scenes/top.tscn" id="7_5anjd"]
+[ext_resource type="Texture2D" uid="uid://cud3srjapwvt3" path="res://assets/NewSprite15.png" id="8_arxg2"]
+[ext_resource type="Script" path="res://scripts/top.gd" id="8_nopbp"]
+[ext_resource type="Texture2D" uid="uid://x7f0rvvoxy6p" path="res://assets/Green.png" id="8_yr411"]
+[ext_resource type="PackedScene" uid="uid://cyoj6l511rtfh" path="res://scenes/game_over_panel.tscn" id="10_f6upg"]
+[ext_resource type="PackedScene" uid="uid://54ghaojkrd7v" path="res://scenes/goal_prefab.tscn" id="13_eano5"]
+
+[node name="GameWindow" type="Node"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="game_manager" type="Node" parent="."]
+script = ExtResource("1_1owbx")
+width = 8
+height = 10
+is_moves = true
+max_counter = 15
+num_colors = 4
+points_per_piece = 1
+
+[node name="move_timer" type="Timer" parent="game_manager"]
+
+[node name="game_over_panel" parent="game_manager" instance=ExtResource("10_f6upg")]
+
+[node name="game_win_panel" parent="game_manager" instance=ExtResource("3_yaomi")]
+
+[node name="grid" type="Node2D" parent="."]
+script = ExtResource("2_pbelb")
+x_start = 64
+y_start = 800
+offset = 64
+y_offset = -2
+sinker_piece = ExtResource("3_hbrup")
+sinkers_in_scene = true
+max_sinkers = 3
+empty_spaces = PackedVector2Array(3, 5, 4, 5)
+ice_spaces = PackedVector2Array(3, 4, 4, 4)
+concrete_spaces = PackedVector2Array(3, 3, 4, 3)
+fire_spaces = PackedVector2Array(3, 2, 4, 2)
+
+[node name="goal_holder" type="Node" parent="."]
+script = ExtResource("5_sng36")
+
+[node name="goal" parent="goal_holder" instance=ExtResource("6_433oy")]
+goal_texture = ExtResource("8_arxg2")
+max_needed = 2
+goal_string = "ice"
+
+[node name="goal2" parent="goal_holder" instance=ExtResource("6_433oy")]
+goal_texture = ExtResource("8_yr411")
+max_needed = 10
+goal_string = "green"
+
+[node name="ice_holder" type="Node2D" parent="."]
+script = ExtResource("3_j3uie")
+
+[node name="concreate_holder" type="Node2D" parent="."]
+script = ExtResource("4_ycjt2")
+
+[node name="fire_holder" type="Node2D" parent="."]
+script = ExtResource("5_sdv13")
+
+[node name="LineLayer" type="CanvasLayer" parent="."]
+script = ExtResource("3_b5isi")
+
+[node name="Line2D" type="Line2D" parent="LineLayer"]
+width = 12.0
+default_color = Color(0.830285, 0.721022, 0.542635, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="destroy_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="collapse_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="refill_timer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Top" parent="." instance=ExtResource("7_5anjd")]
+script = ExtResource("8_nopbp")
+goal_prefab = ExtResource("13_eano5")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Top/NinePatchRect/HBoxContainer/MarginContainer" index="0"]
+layout_mode = 2
+
+[connection signal="change_game_state" from="game_manager" to="grid" method="_on_game_manager_change_game_state"]
+[connection signal="set_counter" from="game_manager" to="Top" method="_on_game_manager_set_counter"]
+[connection signal="set_dimensions" from="game_manager" to="grid" method="_on_game_manager_set_dimensions"]
+[connection signal="timeout" from="game_manager/move_timer" to="game_manager" method="_on_move_timer_timeout"]
+[connection signal="add_point" from="grid" to="LineLayer" method="_on_grid_add_point"]
+[connection signal="check_goal" from="grid" to="goal_holder" method="_on_grid_check_goal"]
+[connection signal="check_goal" from="grid" to="Top" method="_on_grid_check_goal"]
+[connection signal="clear_line" from="grid" to="LineLayer" method="_on_grid_clear_line"]
+[connection signal="damage_concrete" from="grid" to="concreate_holder" method="_on_grid_damage_concrete"]
+[connection signal="damage_fire" from="grid" to="fire_holder" method="_on_grid_damage_fire"]
+[connection signal="damage_ice" from="grid" to="ice_holder" method="_on_grid_damage_ice"]
+[connection signal="make_concrete" from="grid" to="concreate_holder" method="_on_grid_make_concrete"]
+[connection signal="make_fire" from="grid" to="fire_holder" method="_on_grid_make_fire"]
+[connection signal="make_ice" from="grid" to="ice_holder" method="_on_grid_make_ice"]
+[connection signal="remove_last_point" from="grid" to="LineLayer" method="_on_grid_remove_last_point"]
+[connection signal="update_counter" from="grid" to="game_manager" method="_on_grid_update_counter"]
+[connection signal="create_goal" from="goal_holder" to="Top" method="_on_goal_holder_create_goal"]
+[connection signal="game_win" from="goal_holder" to="game_manager" method="_on_goal_holder_game_win"]
+[connection signal="break_ice" from="ice_holder" to="goal_holder" method="_on_ice_holder_break_ice"]
+[connection signal="break_ice" from="ice_holder" to="Top" method="_on_ice_holder_break_ice"]
+[connection signal="break_concreate" from="concreate_holder" to="Top" method="_on_concreate_holder_break_concreate"]
+[connection signal="remove_concrete" from="concreate_holder" to="grid" method="_on_concreate_holder_remove_concrete"]
+[connection signal="remove_fire" from="fire_holder" to="grid" method="_on_fire_holder_remove_fire"]
+[connection signal="timeout" from="destroy_timer" to="grid" method="_on_destroy_timer_timeout"]
+[connection signal="timeout" from="collapse_timer" to="grid" method="_on_collapse_timer_timeout"]
+[connection signal="timeout" from="refill_timer" to="grid" method="_on_refill_timer_timeout"]
+
+[editable path="Top"]

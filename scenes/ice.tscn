@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs3i5lvck73p1"]
+
+[ext_resource type="Script" path="res://scripts/ice.gd" id="1_qgimo"]
+[ext_resource type="Texture2D" uid="uid://chv3d6i24dv74" path="res://assets/NewSprite14.png" id="2_4mqmi"]
+
+[node name="ice" type="Node2D"]
+script = ExtResource("1_qgimo")
+health = 3
+color = "ice"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.784314)
+texture = ExtResource("2_4mqmi")
+hframes = 3

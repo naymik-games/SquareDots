@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwhhff8221gg5"]
+
+[ext_resource type="Texture2D" uid="uid://bdojwp63cm0sw" path="res://assets/NewPanelSprite3.png" id="1_okil3"]
+[ext_resource type="FontFile" uid="uid://b2hbbexex58a3" path="res://assets/monogram-extended.ttf" id="2_bhr3a"]
+
+[node name="Top" type="MarginContainer"]
+offset_right = 701.0
+offset_bottom = 158.0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_okil3")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 14.0
+offset_right = 265.0
+offset_bottom = 95.0
+theme_override_constants/separation = 20
+
+[node name="counter_label" type="Label" parent="NinePatchRect/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_bhr3a")
+theme_override_font_sizes/font_size = 80
+text = "25	"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
