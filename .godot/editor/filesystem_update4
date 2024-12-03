@@ -9,4 +9,3 @@ res://scenes/top.tscn
 res://scenes/goal.tscn
 res://scenes/goal_prefab.tscn
 res://scenes/game_win_panel.tscn
-res://scripts/goal_holder.gd
